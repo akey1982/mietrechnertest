@@ -30,9 +30,9 @@ describe('test mietrechner', () => {
         await expect(MietrechnerPage.table).toBeElementsArrayOfSize(0) 
 
     });
-
-
-    it.only('negativ case rent: -1000 interest: 1.5', async () => {
+    
+    
+    it('negativ case rent: -1000 interest: 1.5', async () => {
         await MietrechnerPage.open();
         await MietrechnerPage.handleCookies();
         await MietrechnerPage.setValues('-1000','-1')
@@ -43,6 +43,15 @@ describe('test mietrechner', () => {
 
     });
 
+    it.only('stress test case rent: 100000 interest: 10.5', async () => {
+        await MietrechnerPage.open();
+        await MietrechnerPage.handleCookies();
+        await MietrechnerPage.setValues('100000','10,5')
+        await MietrechnerPage.clickTocal();
+        await MietrechnerPage.waitFor(await MietrechnerPage.eleResult)
+        await expect(MietrechnerPage.table).toBeElementsArrayOfSize(12) 
+
+    });
     
 
 
